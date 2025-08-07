@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Competition</title>
+    <style>
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background-color:#fdf8f5;color:#5c5451;margin:0;padding:20px;display:flex;justify-content:center;align-items:flex-start;min-height:100vh}.container{background-color:#fff;padding:2.5rem 3rem;border-radius:8px;box-shadow:0 4px 25px rgba(0,0,0,.07);border:1px solid #f0e6e6;width:100%;max-width:800px}h1{color:#b08282;border-bottom:1px solid #e0d5d5;padding-bottom:15px;margin-bottom:2rem;font-weight:500}.hidden{display:none}.form-group{margin-bottom:1.5rem}label{display:block;margin-bottom:8px;font-weight:600;color:#8c7373}input[type=text]{width:100%;padding:12px;border:1px solid #e0d5d5;border-radius:5px;box-sizing:border-box;background-color:#fdfcfc;color:#5c5451;transition:border-color .3s ease,box-shadow .3s ease}input[type=text]:focus{outline:none;border-color:#e6a3ab;box-shadow:0 0 0 3px rgba(230,163,171,.2)}.btn{background-color:#e6a3ab;color:#fff;padding:12px 20px;border:none;border-radius:5px;cursor:pointer;font-size:16px;font-weight:600;width:100%;margin-top:1rem;transition:background-color .3s ease,transform .2s ease}.btn:hover{background-color:#d18e97;transform:translateY(-2px)}.error-message{color:#c97c7c;margin-top:10px}#quiz-container{margin-bottom:2rem}.question-block{background-color:#fffafb;padding:1.5rem;border-radius:8px;margin-bottom:1.5rem;border:1px solid #f0d9dc}.question-block h3{margin-top:0;color:#5c5451;font-weight:600}.options-group{display:flex;flex-direction:column}.options-group label{font-weight:400;padding:10px;cursor:pointer;border-radius:5px;transition:background-color .2s ease;color:#5c5451}.options-group label:hover{background-color:#fceef0}.options-group input[type=radio]{margin-right:12px;accent-color:#e6a3ab}.success-message{font-size:1.2rem;color:#5a8e71;font-weight:700;text-align:center;padding:20px;background-color:#eaf3ed;border:1px solid #d4e3d9;border-radius:8px}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PAGE 1: REGISTRATION -->
+        <div id="page-register">
+            <h1>Quiz Competition Registration</h1>
+            <form id="registration-form">
+                <div class="form-group"><label for="team-name">Team Name*</label><input type="text" id="team-name" required></div>
+                <div class="form-group"><label for="member1">Team Member 1 Name*</label><input type="text" id="member1" required></div>
+                <div class="form-group"><label for="member2">Team Member 2 Name (Optional)</label><input type="text" id="member2"></div>
+                <div class="form-group"><label for="member3">Team Member 3 Name (Optional)</label><input type="text" id="member3"></div>
+                <div class="form-group"><label for="college-name">College Name*</label><input type="text" id="college-name" required></div>
+                <div id="register-error" class="error-message"></div>
+                <button type="submit" class="btn">Start Quiz</button>
+            </form>
+        </div>
+        <!-- PAGE 2: QUIZ -->
+        <div id="page-quiz" class="hidden">
+            <h1>Quiz for Team: <span id="quiz-team-name"></span></h1>
+            <p>Answer all the questions below and click submit.</p>
+            <form id="quiz-form">
+                <div id="quiz-container"></div>
+                <button type="submit" class="btn" id="submit-btn">Submit Answers</button>
+            </form>
+        </div>
+        <!-- PAGE 3: THANK YOU -->
+        <div id="page-thank-you" class="hidden">
+            <h1>Thank You, <span id="final-team-name"></span>!</h1>
+            <p class="success-message">Your submission has been recorded successfully.</p>
+            <p>You may now close this window.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

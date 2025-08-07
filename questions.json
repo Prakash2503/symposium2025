@@ -1,0 +1,402 @@
+[
+  {
+    "question": "Which of the following ML algorithms can act both as a classifier and regressor?",
+    "options": [
+      "Linear Regression",
+      "Decision Tree",
+      "K-Means",
+      "PCA"
+    ],
+    "answer": "Decision Tree"
+  },
+  {
+    "question": "Which data structure is ideal for implementing recursion?",
+    "options": [
+      "Queue",
+      "Stack",
+      "HashMap",
+      "ArrayList"
+    ],
+    "answer": "Stack"
+  },
+  {
+    "question": "In UI/UX, what does 'F-pattern' refer to?",
+    "options": [
+      "A framework layout",
+      "Visual scanning pattern of users",
+      "CSS grid system",
+      "JavaScript design pattern"
+    ],
+    "answer": "Visual scanning pattern of users"
+  },
+  {
+    "question": "Which of the following gives the best average case time complexity for search?",
+    "options": [
+      "Binary Tree",
+      "Linked List",
+      "Hash Table",
+      "Stack"
+    ],
+    "answer": "Hash Table"
+  },
+  {
+    "question": "Which of the following is not a valid React lifecycle method?",
+    "options": [
+      "componentDidMount",
+      "componentWillUnmount",
+      "renderComponent",
+      "shouldComponentUpdate"
+    ],
+    "answer": "renderComponent"
+  },
+  {
+    "question": "Which of the following regularization techniques adds absolute value penalty to the loss?",
+    "options": [
+      "L2",
+      "L1",
+      "Dropout",
+      "Early stopping"
+    ],
+    "answer": "L1"
+  },
+  {
+    "question": "Which of the following best describes gradient descent?",
+    "options": [
+      "A linear classifier",
+      "An optimization algorithm",
+      "A data visualization tool",
+      "A cost function"
+    ],
+    "answer": "An optimization algorithm"
+  },
+  {
+    "question": "Which of the following will evaluate to true in Python?",
+    "options": [
+      "[] == False",
+      "None == 0",
+      "\"0\" == 0",
+      "bool(\"False\") == False"
+    ],
+    "answer": "[] == False"
+  },
+  {
+    "question": "Which HTTP status code means 'Forbidden'?",
+    "options": [
+      "404",
+      "500",
+      "403",
+      "401"
+    ],
+    "answer": "403"
+  },
+  {
+    "question": "What is the major difference between supervised and reinforcement learning?",
+    "options": [
+      "Reinforcement learning uses labeled data",
+      "Supervised learning optimizes rewards",
+      "Reinforcement learning uses rewards and punishment",
+      "Supervised learning has no feedback loop"
+    ],
+    "answer": "Reinforcement learning uses rewards and punishment"
+  },
+  {
+    "question": "Which method can be used to avoid callback hell in JavaScript?",
+    "options": [
+      "setTimeout",
+      "Promises",
+      "Event Loops",
+      "WebSockets"
+    ],
+    "answer": "Promises"
+  },
+  {
+    "question": "Which of these is not a valid method in JavaScript's Array prototype?",
+    "options": [
+      "map()",
+      "reduce()",
+      "select()",
+      "filter()"
+    ],
+    "answer": "select()"
+  },
+  {
+    "question": "Which metric is used to evaluate a clustering algorithm?",
+    "options": [
+      "Confusion Matrix",
+      "Silhouette Score",
+      "ROC Curve",
+      "Accuracy"
+    ],
+    "answer": "Silhouette Score"
+  },
+  {
+    "question": "Which of the following is true about CSS specificity?",
+    "options": [
+      "Inline styles have lowest priority",
+      "ID selectors override class selectors",
+      "Universal selector has higher specificity than class",
+      "The order in CSS file decides specificity"
+    ],
+    "answer": "ID selectors override class selectors"
+  },
+  {
+    "question": "Which of the following is used for visualizing high-dimensional data?",
+    "options": [
+      "Logistic Regression",
+      "t-SNE",
+      "K-Means",
+      "Naive Bayes"
+    ],
+    "answer": "t-SNE"
+  },
+  {
+    "question": "Which of these structures is ideal for implementing DFS traversal in graphs?",
+    "options": [
+      "Stack",
+      "Queue",
+      "Heap",
+      "Tree"
+    ],
+    "answer": "Stack"
+  },
+  {
+    "question": "What is the output of print('5' + '5') in Python?",
+    "options": [
+      "10",
+      "55",
+      "Error",
+      "None"
+    ],
+    "answer": "55"
+  },
+  {
+    "question": "Which HTML attribute specifies an alternate text for an image?",
+    "options": [
+      "href",
+      "alt",
+      "src",
+      "title"
+    ],
+    "answer": "alt"
+  },
+  {
+    "question": "Which HTTP method is idempotent and used to replace a resource?",
+    "options": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH"
+    ],
+    "answer": "PUT"
+  },
+  {
+    "question": "Which Python keyword is used for handling exceptions?",
+    "options": [
+      "except",
+      "handle",
+      "catch",
+      "recover"
+    ],
+    "answer": "except"
+  },
+  {
+    "question": "Which technique is used to reduce the dimensionality of data?",
+    "options": [
+      "KNN",
+      "PCA",
+      "SVM",
+      "CNN"
+    ],
+    "answer": "PCA"
+  },
+  {
+    "question": "Which of the following loss functions is commonly used in classification problems?",
+    "options": [
+      "Mean Absolute Error",
+      "Binary Cross-Entropy",
+      "Hinge Loss",
+      "Mean Squared Error"
+    ],
+    "answer": "Binary Cross-Entropy"
+  },
+  {
+    "question": "Which algorithm uses a decision boundary to classify data?",
+    "options": [
+      "KNN",
+      "Naive Bayes",
+      "SVM",
+      "Random Forest"
+    ],
+    "answer": "SVM"
+  },
+  {
+    "question": "Which sorting algorithm has best-case time complexity O(n)?",
+    "options": [
+      "Merge Sort",
+      "Quick Sort",
+      "Bubble Sort",
+      "Insertion Sort"
+    ],
+    "answer": "Insertion Sort"
+  },
+  {
+    "question": "Which SQL clause is used to filter groups?",
+    "options": [
+      "WHERE",
+      "GROUP BY",
+      "HAVING",
+      "ORDER BY"
+    ],
+    "answer": "HAVING"
+  },
+  {
+    "question": "What does the React hook useEffect do?",
+    "options": [
+      "Handles state",
+      "Performs side effects",
+      "Returns a callback",
+      "Creates context"
+    ],
+    "answer": "Performs side effects"
+  },
+  {
+    "question": "Which of the following is a convolutional layer used for?",
+    "options": [
+      "Tabular data",
+      "Time-series data",
+      "Image processing",
+      "Text summarization"
+    ],
+    "answer": "Image processing"
+  },
+  {
+    "question": "Which design principle suggests that UI should be self-explanatory and intuitive?",
+    "options": [
+      "Usability Engineering",
+      "Cognitive Load Reduction",
+      "Aesthetic-Usability Effect",
+      "Affordance"
+    ],
+    "answer": "Affordance"
+  },
+  {
+    "question": "What is the output of a many-to-many relationship join?",
+    "options": [
+      "Cartesian Product",
+      "Inner Join",
+      "Cross Join",
+      "Multiple Rows Per Match"
+    ],
+    "answer": "Multiple Rows Per Match"
+  },
+  {
+    "question": "Which technique is used to handle imbalanced data?",
+    "options": [
+      "Feature Scaling",
+      "One-Hot Encoding",
+      "SMOTE",
+      "PCA"
+    ],
+    "answer": "SMOTE"
+  },
+  {
+    "question": "Which of the following is a deep learning framework?",
+    "options": [
+      "Hadoop",
+      "Spark",
+      "TensorFlow",
+      "NumPy"
+    ],
+    "answer": "TensorFlow"
+  },
+  {
+    "question": "What is the advantage of using B-trees in databases?",
+    "options": [
+      "Simplifies relationships",
+      "Provides faster search in large data blocks",
+      "Reduces memory usage",
+      "Supports only sequential access"
+    ],
+    "answer": "Provides faster search in large data blocks"
+  },
+  {
+    "question": "What is the worst-case time complexity of Quick Sort?",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)",
+      "O(n)"
+    ],
+    "answer": "O(n^2)"
+  },
+  {
+    "question": "Which architecture allows horizontal scaling in web apps?",
+    "options": [
+      "Monolithic",
+      "Layered",
+      "Microservices",
+      "Event-Driven"
+    ],
+    "answer": "Microservices"
+  },
+  {
+    "question": "Which feature of MongoDB allows flexible document structure?",
+    "options": [
+      "Collections",
+      "Schema Enforcement",
+      "Document Model",
+      "Tables"
+    ],
+    "answer": "Document Model"
+  },
+  {
+    "question": "Which ML model is best suited for time-series prediction?",
+    "options": [
+      "Random Forest",
+      "CNN",
+      "LSTM",
+      "KNN"
+    ],
+    "answer": "LSTM"
+  },
+  {
+    "question": "Which of the following is a client-side storage option in web development?",
+    "options": [
+      "MongoDB",
+      "SessionStorage",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "answer": "SessionStorage"
+  },
+  {
+    "question": "Which concept ensures atomicity, consistency, isolation, and durability in databases?",
+    "options": [
+      "CRUD",
+      "REST",
+      "ACID",
+      "BASE"
+    ],
+    "answer": "ACID"
+  },
+  {
+    "question": "Which HTTP method is used to partially update a resource?",
+    "options": [
+      "PUT",
+      "PATCH",
+      "GET",
+      "DELETE"
+    ],
+    "answer": "PATCH"
+  },
+  {
+    "question": "Which data structure is used in implementing priority queues?",
+    "options": [
+      "HashMap",
+      "LinkedList",
+      "Heap",
+      "Stack"
+    ],
+    "answer": "Heap"
+  }
+]
