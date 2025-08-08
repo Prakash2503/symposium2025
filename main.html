@@ -3,42 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Competition</title>
+    <title>Draw the Sword - A Coding Challenge</title>
+    
+    <!-- CSS Styles are embedded in the HTML file -->
     <style>
-        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background-color:#fdf8f5;color:#5c5451;margin:0;padding:20px;display:flex;justify-content:center;align-items:flex-start;min-height:100vh}.container{background-color:#fff;padding:2.5rem 3rem;border-radius:8px;box-shadow:0 4px 25px rgba(0,0,0,.07);border:1px solid #f0e6e6;width:100%;max-width:800px}h1{color:#b08282;border-bottom:1px solid #e0d5d5;padding-bottom:15px;margin-bottom:2rem;font-weight:500}.hidden{display:none}.form-group{margin-bottom:1.5rem}label{display:block;margin-bottom:8px;font-weight:600;color:#8c7373}input[type=text]{width:100%;padding:12px;border:1px solid #e0d5d5;border-radius:5px;box-sizing:border-box;background-color:#fdfcfc;color:#5c5451;transition:border-color .3s ease,box-shadow .3s ease}input[type=text]:focus{outline:none;border-color:#e6a3ab;box-shadow:0 0 0 3px rgba(230,163,171,.2)}.btn{background-color:#e6a3ab;color:#fff;padding:12px 20px;border:none;border-radius:5px;cursor:pointer;font-size:16px;font-weight:600;width:100%;margin-top:1rem;transition:background-color .3s ease,transform .2s ease}.btn:hover{background-color:#d18e97;transform:translateY(-2px)}.error-message{color:#c97c7c;margin-top:10px}#quiz-container{margin-bottom:2rem}.question-block{background-color:#fffafb;padding:1.5rem;border-radius:8px;margin-bottom:1.5rem;border:1px solid #f0d9dc}.question-block h3{margin-top:0;color:#5c5451;font-weight:600}.options-group{display:flex;flex-direction:column}.options-group label{font-weight:400;padding:10px;cursor:pointer;border-radius:5px;transition:background-color .2s ease;color:#5c5451}.options-group label:hover{background-color:#fceef0}.options-group input[type=radio]{margin-right:12px;accent-color:#e6a3ab}.success-message{font-size:1.2rem;color:#5a8e71;font-weight:700;text-align:center;padding:20px;background-color:#eaf3ed;border:1px solid #d4e3d9;border-radius:8px}
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .dragon-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        .title {
+            color: #ff0000;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff4d4d;
+            margin: 0 0 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(26, 26, 26, 0.7);
+            border: 1px solid #ff0000;
+            color: #ffffff;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input[type="text"]::placeholder {
+            color: #bbbbbb;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            margin-bottom: 15px;
+            min-height: 20px;
+        }
+
+        .btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
+
+        .btn:disabled {
+            background-color: #5c0000;
+            cursor: not-allowed;
+        }
+
+        .team-title {
+            color: #ff0000;
+            text-shadow: 0 0 8px #ff0000;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 10px;
+            background-color: #ff0000;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* --- CHANGED HERE: Removed height and overflow limits --- */
+        #quiz-container {
+            text-align: left;
+            padding-right: 0; /* No longer need padding for a scrollbar */
+        }
+        
+        .question-block {
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options-list li {
+            margin-bottom: 10px;
+        }
+        
+        .options-list label {
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .options-list input[type="radio"] {
+            display: none;
+        }
+        
+        .options-list input[type="radio"] + label:before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+            vertical-align: middle;
+        }
+        
+        .options-list input[type="radio"]:checked + label:before {
+            background-color: #ff0000;
+            box-shadow: 0 0 5px #ff0000;
+        }
+
+        .options-list input[type="radio"]:checked + label {
+            color: #ff4d4d;
+        }
+
+        #red-dust-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .dust-particle {
+            position: absolute;
+            background-color: #ff0000;
+            border-radius: 50%;
+            opacity: 0.7;
+            box-shadow: 0 0 5px #ff0000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <img src="./pngtree-chinese-dragon-traditional-spring-festival-red-illustration-png-image_13533991.png" alt="Dragon" class="dragon-bg">
     <div class="container">
-        <!-- PAGE 1: REGISTRATION -->
-        <div id="page-register">
-            <h1>Quiz Competition Registration</h1>
+        <!-- Registration Page -->
+        <div id="page-register" class="page active">
+            <header>
+                <h1 class="title">DRAW THE SWORD</h1>
+                <p class="subtitle">THINK SYNC CODE</p>
+            </header>
             <form id="registration-form">
-                <div class="form-group"><label for="team-name">Team Name*</label><input type="text" id="team-name" required></div>
-                <div class="form-group"><label for="member1">Team Member 1 Name*</label><input type="text" id="member1" required></div>
-                <div class="form-group"><label for="member2">Team Member 2 Name (Optional)</label><input type="text" id="member2"></div>
-                <div class="form-group"><label for="member3">Team Member 3 Name (Optional)</label><input type="text" id="member3"></div>
-                <div class="form-group"><label for="college-name">College Name*</label><input type="text" id="college-name" required></div>
-                <div id="register-error" class="error-message"></div>
-                <button type="submit" class="btn">Start Quiz</button>
+                <div class="form-group">
+                    <input type="text" id="team-name" name="teamName" placeholder="Team Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="member-1" placeholder="Member 1 Name (Required)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="member-2" placeholder="Member 2 Name (Optional)">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="member-3" placeholder="Member 3 Name (Optional)">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="college-name" name="collegeName" placeholder="College Name" required>
+                </div>
+                <p id="register-error" class="error-message"></p>
+                <button type="submit" class="btn">Begin Challenge</button>
             </form>
         </div>
-        <!-- PAGE 2: QUIZ -->
-        <div id="page-quiz" class="hidden">
-            <h1>Quiz for Team: <span id="quiz-team-name"></span></h1>
-            <p>Answer all the questions below and click submit.</p>
+
+        <!-- Quiz Page -->
+        <div id="page-quiz" class="page">
+            <header>
+                <h2 id="quiz-team-name" class="team-title"></h2>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </header>
             <form id="quiz-form">
-                <div id="quiz-container"></div>
-                <button type="submit" class="btn" id="submit-btn">Submit Answers</button>
+                <div id="quiz-container">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                <button type="submit" class="btn">Prove Your Valor</button>
             </form>
         </div>
-        <!-- PAGE 3: THANK YOU -->
-        <div id="page-thank-you" class="hidden">
-            <h1>Thank You, <span id="final-team-name"></span>!</h1>
-            <p class="success-message">Your submission has been recorded successfully.</p>
-            <p>You may now close this window.</p>
+
+        <!-- Thank You Page -->
+        <div id="page-thank-you" class="page">
+            <div id="red-dust-container"></div>
+            <h1 class="title">Challenge Completed!</h1>
+            <p id="thank-you-message" class="subtitle"></p>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- JavaScript is embedded in the HTML file -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const NUM_QUESTIONS_TO_ASK = 10;
+            
+            const allQuestions = [
+                { "question": "What does HTML stand for?", "options": ["Hyper Trainer Marking Language", "Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"], "answer": "Hyper Text Markup Language" },
+                { "question": "Which property is used to change the background color in CSS?", "options": ["color", "bgcolor", "background-color", "background"], "answer": "background-color" },
+                { "question": "Which JavaScript keyword is used to declare a variable?", "options": ["var", "let", "const", "All of the above"], "answer": "All of the above" },
+                { "question": "How do you write 'Hello World' in an alert box?", "options": ["msg('Hello World');", "alertBox('Hello World');", "alert('Hello World');", "msgBox('Hello World');"], "answer": "alert('Hello World');" },
+                { "question": "Which data structure uses LIFO (Last-In, First-Out)?", "options": ["Queue", "Stack", "Array", "Linked List"], "answer": "Stack" },
+                { "question": "What is the time complexity of a binary search algorithm?", "options": ["O(n)", "O(log n)", "O(n^2)", "O(1)"], "answer": "O(log n)" },
+                { "question": "Which Git command is used to upload local repository content to a remote repository?", "options": ["git upload", "git push", "git send", "git commit"], "answer": "git push" },
+                { "question": "What does SQL stand for?", "options": ["Structured Query Language", "Simple Query Language", "Stylish Question Language", "Scripted Query Language"], "answer": "Structured Query Language" },
+                { "question": "What is 'NaN' in JavaScript?", "options": ["Not a Node", "No available Number", "Not a Number", "New-age Notation"], "answer": "Not a Number" },
+                { "question": "In Python, how do you comment a single line?", "options": ["// This is a comment", "/* This is a comment */", "# This is a comment", "<!-- This is a comment -->"], "answer": "# This is a comment" }
+            ];
+
+            const appState = { teamDetails: {}, questions: [] };
+
+            const pageRegister = document.getElementById('page-register');
+            const pageQuiz = document.getElementById('page-quiz');
+            const pageThankYou = document.getElementById('page-thank-you');
+            const registrationForm = document.getElementById('registration-form');
+            const quizForm = document.getElementById('quiz-form');
+            const registerError = document.getElementById('register-error');
+            const beginChallengeBtn = registrationForm.querySelector('.btn');
+            const quizContainer = document.getElementById('quiz-container');
+            const progressBar = document.getElementById('progress-bar');
+            const quizTeamName = document.getElementById('quiz-team-name');
+            const thankYouMessage = document.getElementById('thank-you-message');
+
+            const showPage = (pageToShow) => {
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                pageToShow.classList.add('active');
+                window.scrollTo(0, 0);
+            };
+
+            const loadAndDisplayQuiz = () => {
+                appState.questions = shuffleArray(allQuestions).slice(0, NUM_QUESTIONS_TO_ASK);
+                quizContainer.innerHTML = '';
+                appState.questions.forEach((q, index) => {
+                    const questionBlock = document.createElement('div');
+                    questionBlock.classList.add('question-block');
+                    const optionsHTML = q.options.map((option, i) => `
+                        <li>
+                            <input type="radio" name="question${index}" value="${option}" id="q${index}_option${i}" required>
+                            <label for="q${index}_option${i}">${option}</label>
+                        </li>`).join('');
+                    questionBlock.innerHTML = `<p class="question-text">${index + 1}. ${q.question}</p><ul class="options-list">${optionsHTML}</ul>`;
+                    quizContainer.appendChild(questionBlock);
+                });
+                quizTeamName.textContent = `Team: ${appState.teamDetails.teamName}`;
+                quizContainer.addEventListener('change', updateProgressBar);
+                showPage(pageQuiz);
+            };
+            
+            const shuffleArray = (array) => {
+                let currentIndex = array.length, randomIndex;
+                while (currentIndex != 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+                    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+                }
+                return array;
+            };
+            
+            const updateProgressBar = () => {
+                const answeredQuestions = quizContainer.querySelectorAll('input[type="radio"]:checked').length;
+                const progress = (answeredQuestions / appState.questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            };
+
+            const createRedDustEffect = () => {
+                const container = document.getElementById('red-dust-container');
+                if (!container) return;
+                container.innerHTML = '';
+                const particles = 150;
+                for (let i = 0; i < particles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('dust-particle');
+                    const size = Math.random() * 5 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * -100}px`;
+                    const duration = Math.random() * 3 + 4;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${Math.random() * 2}s`;
+                    container.appendChild(particle);
+                }
+            };
+
+            registrationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                registerError.textContent = '';
+                
+                const teamName = document.getElementById('team-name').value.trim();
+                const collegeName = document.getElementById('college-name').value.trim();
+                const member1 = document.getElementById('member-1').value.trim();
+                const member2 = document.getElementById('member-2').value.trim();
+                const member3 = document.getElementById('member-3').value.trim();
+
+                if (!teamName || !member1 || !collegeName) {
+                    registerError.textContent = 'Team Name, Member 1, and College Name are required.';
+                    return;
+                }
+
+                const allMembers = [member1, member2, member3].filter(Boolean);
+                const memberNamesString = allMembers.join(', ');
+
+                appState.teamDetails = { teamName, memberNames: memberNamesString, collegeName };
+                
+                beginChallengeBtn.disabled = true;
+                beginChallengeBtn.textContent = '⏳ Preparing Challenge...';
+                
+                loadAndDisplayQuiz();
+            });
+
+            quizForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let score = 0;
+                appState.questions.forEach((question, index) => {
+                    const selectedOption = quizForm.querySelector(`input[name="question${index}"]:checked`);
+                    if (selectedOption && selectedOption.value === question.answer) {
+                        score++;
+                    }
+                });
+                const submissionData = {
+                    ...appState.teamDetails,
+                    score: score,
+                    totalQuestions: appState.questions.length,
+                    timestamp: new Date().toISOString()
+                };
+                fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(submissionData)
+                }).catch(err => console.error('Fetch error:', err));
+                thankYouMessage.textContent = `Congratulations, Team ${appState.teamDetails.teamName}! Your score has been recorded.`;
+                showPage(pageThankYou);
+                createRedDustEffect();
+            });
+        });
+    </script>
 </body>
 </html>
